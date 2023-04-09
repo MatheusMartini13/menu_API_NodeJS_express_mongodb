@@ -1,13 +1,12 @@
-// 3rd party modules
-const express = require('express');
-
-// constrollers
+// controllers
 const categoryController = require('../controllers/category');
 
-// Router
-
+// express router
+const express = require('express');
 const router = express.Router();
 
+// routes definition
 router.get('/category', categoryController.getCategory);
 
+// router export
 module.exports = router;

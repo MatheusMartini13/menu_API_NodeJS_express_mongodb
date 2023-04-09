@@ -1,0 +1,33 @@
+{
+	"name": "menu_api_nodejs_express_mongodb",
+	"version": "1.0.0",
+	"description": "RESTful API to manage an online menu",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MatheusMartini13/menu_API_NodeJS_express_mongodb.git"
+	},
+	"author": "Matheus Martini",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/MatheusMartini13/menu_API_NodeJS_express_mongodb/issues"
+	},
+	"homepage": "https://github.com/MatheusMartini13/menu_API_NodeJS_express_mongodb#readme",
+	"dependencies": {
+		"bcryptjs": "^2.4.3",
+		"cors": "^2.8.5",
+		"express": "^4.18.2",
+		"express-session": "^1.17.3",
+		"express-validator": "^6.15.0",
+		"mongodb": "^5.2.0",
+		"mongoose": "^7.0.3"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.22",
+		"prettier": "^2.8.7"
+	}
+}

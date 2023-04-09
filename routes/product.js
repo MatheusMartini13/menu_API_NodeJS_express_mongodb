@@ -10,19 +10,33 @@ const router = express.Router();
 
 // routes definition
 router.get('/product', productController.getAllProducts);
-// router.get('/product:id', productController.getOneProduct);
+router.get('/product:productId', productController.getOneProduct);
 router.post(
 	'/product',
 	[
-		body('name').not().isEmpty().escape(),
-		body('categories.*').trim().not().isEmpty().escape(),
-		body('price').trim().isNumeric().toFloat(),
-		body('quantity').trim().isNumeric().toFloat(),
+		body('name', 'Error in name. Check if it is a valid string.')
+			.trim()
+			.not()
+			.isEmpty()
+			.escape(),
+		body('categories.*', 'Error in categories. Check if it is defined.')
+			.trim()
+			.not()
+			.isEmpty()
+			.escape(),
+		body('price', 'Error in price. Check if it is a valid number.')
+			.trim()
+			.isNumeric()
+			.toFloat(),
+		body('quantity', 'Error in quantity. Check if it is a valid number.')
+			.trim()
+			.isNumeric()
+			.toFloat(),
 	],
 	productController.postProduct,
 );
-// router.patch('/product/:id', productController.patchProduct);
-// router.delete('/product:id', productController.deleteProduct);
+// router.patch('/product/:productId', productController.patchProduct);
+// router.delete('/product:productId', productController.deleteProduct);
 
 // router export
 module.exports = router;

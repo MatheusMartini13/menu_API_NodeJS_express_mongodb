@@ -7,28 +7,48 @@ const { validationResult } = require('express-validator');
 
 // functions
 exports.getAllProducts = async (req, res, next) => {
+	// database all products find
 	const products = await Product.find();
-	console.log(products);
 
+	// request handler
 	res.status(200).json({
 		products: products,
 	});
 };
 
+exports.getOneProduct = async (req, res, next) => {
+	// variables
+	const id = req.params.productId;
+
+	// database Product find
+	const product = await Product.findById(id);
+
+	// validation
+	if (!product) {
+		const error = new Error('Product not found.');
+		error.statusCode = 404;
+		return next(error);
+	}
+
+	// request handler
+	res.status(200).json({
+		product: product,
+	});
+};
+
 exports.postProduct = async (req, res, next) => {
-	// variables fetch
+	// variables
 	const name = req.body.name;
 	const reqCategories = req.body.categories;
 	const quantity = req.body.quantity;
 	const price = req.body.price;
 	let realCategories;
 
-	// validation error verification
+	// basic user input validation error verification
 	const errors = validationResult(req);
-	console.log(errors);
 	if (!errors.isEmpty()) {
 		const error = new Error('Validation error.');
-		error.statusCode = 404;
+		error.statusCode = 400;
 		error.data = errors.array();
 		return next(error);
 	}
@@ -53,6 +73,21 @@ exports.postProduct = async (req, res, next) => {
 		return next(error);
 	}
 
+	// product validation
+	try {
+		const existingProduct = await Product.findOne({ name: name });
+		if (existingProduct) {
+			const error = new Error(
+				'There is another product in the database with the same name.',
+			);
+			error.statusCode = 400;
+			error.data = { databaseProductId: existingProduct._id };
+			throw error;
+		}
+	} catch (error) {
+		return next(error);
+	}
+
 	// db product creation
 	const newProduct = new Product({
 		name: name,
@@ -61,9 +96,12 @@ exports.postProduct = async (req, res, next) => {
 		qty: quantity,
 	});
 
-	console.log(newProduct);
+	// database save
+	newProduct.save();
 
+	// response handler
 	res.status(200).json({
-		products: 'test',
+		message: 'Product Created Successfully',
+		product: newProduct,
 	});
 };

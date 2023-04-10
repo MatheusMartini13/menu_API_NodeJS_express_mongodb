@@ -35,8 +35,31 @@ router.post(
 	],
 	productController.postProduct,
 );
-// router.patch('/product/:productId', productController.patchProduct);
-// router.delete('/product:productId', productController.deleteProduct);
+router.patch(
+	'/product/:productId',
+	[
+		body('name', 'Error in name. Check if it is a valid string.')
+			.trim()
+			.not()
+			.isEmpty()
+			.escape(),
+		body('categories.*', 'Error in categories. Check if it is defined.')
+			.trim()
+			.not()
+			.isEmpty()
+			.escape(),
+		body('price', 'Error in price. Check if it is a valid number.')
+			.trim()
+			.isNumeric()
+			.toFloat(),
+		body('quantity', 'Error in quantity. Check if it is a valid number.')
+			.trim()
+			.isNumeric()
+			.toFloat(),
+	],
+	productController.patchProduct,
+);
+router.delete('/product:productId', productController.deleteProduct);
 
 // router export
 module.exports = router;

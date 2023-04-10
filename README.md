@@ -84,6 +84,12 @@ To Delete a product you should send a DELETE request to http://localhost:8080/pr
 
 > Quick Tip: Note that there is no "/" between product and the productId in the URL again.
 
+# Extra -- Testing
+
+If you cloned the repository to your computer you can run "npm test". 
+This will run mocha and will show 3 tests verifications. 
+I created these automatic tests just for the auth controller. The reason of these limitation is because it is an extra. This software is not intended to be used as a real product, so I imagined that testing just part of the software would be enough.
+
 # Overview:
 
 Auth:

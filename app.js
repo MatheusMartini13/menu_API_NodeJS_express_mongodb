@@ -6,6 +6,7 @@ const cors = require('cors');
 // Routes
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
+const authRoutes = require('./routes/auth');
 
 // Variables
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.0ofd72s.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 });
 
 // Routes usage
+app.use(authRoutes);
 app.use(categoryRoutes);
 app.use(productRoutes);
 

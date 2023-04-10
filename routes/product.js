@@ -4,15 +4,20 @@ const productController = require('../controllers/product');
 // validation
 const { body } = require('express-validator');
 
+// middlewares
+const { isAuth } = require('../middleware/auth');
+
 // express router
 const express = require('express');
 const router = express.Router();
 
 // routes definition
+router.use('/product*', isAuth);
 router.get('/product', productController.getAllProducts);
 router.get('/product:productId', productController.getOneProduct);
 router.post(
 	'/product',
+	isAuth,
 	[
 		body('name', 'Error in name. Check if it is a valid string.')
 			.trim()

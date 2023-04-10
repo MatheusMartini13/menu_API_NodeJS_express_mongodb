@@ -98,7 +98,7 @@ exports.postProduct = async (req, res, next) => {
 
 	// response handler
 	res.status(200).json({
-		message: 'Product Created Successfully',
+		message: 'Product created successfully',
 		product: newProduct,
 	});
 };

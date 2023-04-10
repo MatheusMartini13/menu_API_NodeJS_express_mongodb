@@ -3,6 +3,7 @@
 		"MONGO_USER": "menumanager",
 		"MONGO_PASSWORD": "menu123",
 		"MONGO_DEFAULT_DATABASE": "menu",
-    "PORT": "8080"
+		"PORT": "8080",
+		"SECRETJWT": "menusecret"
 	}
 }

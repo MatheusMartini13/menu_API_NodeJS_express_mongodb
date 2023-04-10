@@ -13,8 +13,11 @@ RESTful API to manage an online menu.
 
 # DevDependencies:
 
-- Nodemon - auto restart of the server
-- Prettier - To help keep the code pretty
+- Nodemon - Used to auto restart the server
+- Prettier - Used to help keep the code pretty
+- Mocha - Used as a testing framework
+- Chai - Used as a assertion library dor testing
+- Sinon - Used to generate stubs and facilitate testing
 
 # How to install this API:
 
@@ -25,6 +28,7 @@ The other way is to use the deployed version of the software. I even created a s
 How the API works:
 
 To test the menu API you should send requests with 'application/json' in the 'Content-Type' header. You should pass all the necessary information in two ways:
+
 - 1 - when necessary, as a param in the URL, indicated below as :something.
 - 2 - when necessary, in the request body, in a json format.
 
@@ -34,6 +38,7 @@ To use the system, first you have to be logged in. There is two ways to achieve 
 username: admin
 password: admin
 ```
+
 And sending a POST request with these credentials in the body to '/auth/login'. If the server is running in your local machine, please note that the full URL should be 'http://localhost:8080/auth/login'.
 
 To second way to login is to SingUp, sending a POST request to http://localhost:8080/auth/signup with a username and password in the body, in a json format. After this, you can use this new user created to login with a POST request to http://localhost:8080/auth/login and the username and password in the request body.
@@ -45,9 +50,11 @@ After the token configuration, you can check the categories in the database with
 To check the products already registered in the database you can send a GET request to http://localhost:8080/product. It is not relevant the body in this request.
 
 To check one specific product already registered in the database you can send a GET request to http://localhost:8080/product:productId. It is not relevant the body in this request, and remember that in the url above you should change productId with the id of the product you want to check.
+
 > Quick Tip: You can first check all products and find the .\_id of the product you want to use in this request. Note that there is no "/" between the word product and the productId in the URL.
 
 To create a new product you have to send a POST request to http://localhost:8080/product. In the body you should inform the fields "name", "price", "quantity" and "categories" (an array with the category names you want to add to the product).
+
 > Quick Tip: Here you can check all the categories and find the categories you want. You should use the name of the category and not the id.
 
 ```
@@ -62,23 +69,29 @@ Example:
 "price": "7"
 }
 ```
+
 To patch a product you have to send an body in the same way when creating a product, but you should send a PATCH request and you have to add the product ID in the URL: http://localhost:8080/product/:productId.
+
 > Quick Tip: Note that there is a "/" after product and before the productId in this URL now.
 
 To Delete a product you should send a DELETE request to http://localhost:8080/product:productId.
+
 > Quick Tip: Note that there is no "/" between product and the productId in the URL again.
 
 # Overview:
 
 Auth:
+
 - SignUp: POST to http://localhost:8080/auth/signup
 - Login: POST to http://localhost:8080/auth/login
--- Use the token in the Authorization header as "Bearer token"
+  -- Use the token in the Authorization header as "Bearer token"
 
 Categories:
+
 - Get All Categories: GET to http://localhost:8080/category
 
 Products:
+
 - Get All Products: GET to http://localhost:8080/product
 - Get One Product: GET to http://localhost:8080/product:productId
 - Post a New Product: POST to http://localhost:8080/product

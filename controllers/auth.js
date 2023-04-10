@@ -13,20 +13,19 @@ exports.postLogin = async (req, res, next) => {
 	// user input
 	const username = req.body.username;
 	const password = req.body.password;
-
+  
 	try {
-		// user validation
+    // user validation
 		const user = await User.findOne({ username: username });
 		if (!user) {
-			throw new Error('Login Error');
+      throw new Error('Login Error - Username');
 		}
 
 		// password validation - bcrypt used to encrypt data and ensure safety
 		const rightPassword = await bcrypt.compare(password, user.password);
 		if (!rightPassword) {
-			throw new Error('Login Error');
+			throw new Error('Login Error - Password');
 		}
-
 		//token generation
 		const token = jwt.sign(
 			{
@@ -38,7 +37,7 @@ exports.postLogin = async (req, res, next) => {
 		);
 
 		// response
-		res.status(200).json({ token: token });
+		return res.status(200).json({ token: token });
 	} catch (error) {
 		error.statusCode = 401;
 		return next(error);

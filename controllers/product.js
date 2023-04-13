@@ -153,7 +153,7 @@ exports.patchProduct = async (req, res, next) => {
 	product.name = name;
 	product.categories = realCategories;
 	product.price = price;
-	product.quantity = quantity;
+	product.qty = quantity;
 
 	console.log(product);
 

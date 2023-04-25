@@ -12,7 +12,6 @@ const express = require('express');
 const router = express.Router();
 
 // routes definition
-router.use('/product*', isAuth);
 router.get('/product', productController.getAllProducts);
 router.get('/product:productId', productController.getOneProduct);
 router.post(
@@ -62,9 +61,10 @@ router.patch(
 			.isNumeric()
 			.toFloat(),
 	],
+	isAuth,
 	productController.patchProduct,
 );
-router.delete('/product:productId', productController.deleteProduct);
+router.delete('/product:productId', isAuth, productController.deleteProduct);
 
 // router export
 module.exports = router;

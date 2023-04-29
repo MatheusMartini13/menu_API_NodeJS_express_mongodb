@@ -29,7 +29,7 @@ The other way is to use the deployed version of the software:
 - FrontEnd (demo): https://menu-matt.onrender.com/
 - BackEnd (live): https://matt-menu.onrender.com
 
-This second method is a work in progress. There is a great chance I will be unable to finish the front-end until tomorrow (11/04/23), as I started its creation today 3:00PM, but you can check if it is already created and use it. If not, you can send requests to the backend changing "http://localhost:8080" in the instructions below with the link above. Note that this is a free version of two onrender deployments, so it can be very slow, and you will not be able to check the code, so it is recomended to clone the full code too. The advantage of this deployment is that it is really simple to test how the software works and there is a friendly way to check the requests. It also shows that the API accepts cross origin requests.
+Note that this is a free version of two onrender deployments, so it can be very slow (and could even be offline in rush hours), and you will not be able to check the code, so it is recomended to clone the full code too. The advantage of this deployment is that it is really simple to test how the software works and there is a friendly way to check the requests. It also shows that the API accepts cross origin requests.
 
 # How the API works:
 
